@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&family=Lato:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.menu {
+  @apply ml-6 justify-around cursor-pointer flex flex-col w-[22px] h-[22px];
+}
+.menu > div {
+  @apply bg-menu-color w-[22px] h-[3px];
+  transition: transform 0.4s linear, opacity 0.4s linear;
+  position: relative;
+}
+.menu-clicked > div:first-child {
+  transform: rotate(45deg);
+  transform-origin: 0;
+}
+.menu-clicked > div:nth-child(2) {
+  transform: translateX(20px);
+  opacity: 0;
+  transform-origin: 0;
+}
+.menu-clicked > div:last-child {
+  transform-origin: 1px;
+
+  transform: rotate(-45deg);
+}
+
+.menu-button {
+  @apply mx-auto w-full  my-6 border border-menu-color py-3 px-8 rounded-[50px] hover:text-brand-red 
+  hover:underline transition-colors duration-300;
+}
+
+.menu-button-red {
+  @apply mx-auto  w-full  my-6 border border-brand-red py-3 px-8 lg:px-4 rounded-[50px]
+   text-brand-red hover:bg-brand-red hover:text-white hover:underline transition-colors duration-300;
+}
+.hexagon {
+  @apply relative rounded-3xl;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  width: 30em;
+  height: 30em;
+  left: 40%;
+  margin-bottom: 20px;
+}
+.hexagon::before {
+  content: '';
+  position: absolute;
+  background-image: url('https://bosta.co/841cb0d0f210d54dd999cb2ed74eb5a9.png');
+  width: 40em;
+  height: 34em;
+  background-size: cover;
+  background-position: 110%;
+}
+@media (min-width: 829px) {
+  .hexagon {
+    width: 30em;
+    height: 30em;
+    left: 50%;
+  }
+  .hexagon::before {
+    width: 40em;
+    height: 34em;
+  }
+}
+@media (min-width: 1000px) {
+  .hexagon {
+    width: 40em;
+    height: 40em;
+    left: 60%;
+  }
+  .hexagon::before {
+    width: 40em;
+    height: 40em;
+    background-position: 70%;
+  }
+}
+@media (min-width: 1000px) {
+  .hexagon {
+    width: 40em;
+    height: 40em;
+    left: 60%;
+  }
+  .hexagon::before {
+    width: 40em;
+    height: 40em;
+    background-position: 70%;
+  }
+}
+@media (min-width: 1280px) {
+  .hexagon {
+    position: absolute;
+    width: 40em;
+    height: 40em;
+    left: unset;
+    right: -50px;
+    bottom: 0px;
+  }
+  .hexagon::before {
+    width: 40em;
+    height: 40em;
+    background-position: 45%;
+  }
+}
