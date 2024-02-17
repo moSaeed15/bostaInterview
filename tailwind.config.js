@@ -19,6 +19,7 @@ export default {
         'light-blue': '#f3fafb',
         yellow: '#f9ba02',
         'track-border': '#eeeeee',
+        green: '#35b600',
       },
       boxShadow: {
         dropdown:

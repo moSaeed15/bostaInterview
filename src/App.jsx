@@ -7,12 +7,13 @@ function App() {
   const [language, setLanguage] = useState(
     localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en'
   );
+  const [trackingID, setTrackingID] = useState('');
 
   return (
     <div dir="ltr">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tracking:trackingID" element={<Tracking />} />
+        <Route path="/tracking/:trackingID" element={<Tracking />} />
       </Routes>
     </div>
   );

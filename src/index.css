@@ -114,20 +114,13 @@ lg:flex-row lg:mt-10;
 }
 
 .before:before {
-  @apply content-[''] bg-slate-200 absolute 
+  @apply content-[''] absolute 
   w-[3px] h-[12vh] right-2/4 top-5 -translate-y-[100%]
   lg:w-[24vw] xl:w-[20vw] 2xl:w-[22vw]  lg:h-[3px];
 }
 
 .step {
-  @apply bg-white w-10 h-10 flex items-center justify-center relative  z-10 border  border-slate-200 rounded-full font-semibold text-white;
-}
-
-.complete .step {
-  @apply bg-yellow w-5 h-5;
-}
-.active .step {
-  @apply bg-yellow w-10 h-10;
+  @apply flex items-center justify-center relative  z-10 border  border-slate-200 rounded-full font-semibold text-white;
 }
 
 .step-item {

@@ -1,7 +1,24 @@
+import { useState, useEffect } from 'react';
 import OrderDetails from './OrderDetails';
 import OrderTable from './OrderTable';
 
 const TrackSearch = () => {
+  const [orderData, setOrderData] = useState();
+
+  useEffect(() => {
+    const getOrderData = async () => {
+      const response = await fetch(
+        `https://tracking.bosta.co/shipments/track/7234258`
+      );
+
+      const data = await response.json();
+      console.log(data);
+      setOrderData(data);
+    };
+
+    getOrderData();
+  }, []);
+
   return (
     <div className="bg-white pt-10  mx-5 lg:mx-10 xl:mx-40 ">
       <div className="bg-white w-full h-10 pt-24"></div>
@@ -28,12 +45,16 @@ const TrackSearch = () => {
         <img
           onClick={() => {}}
           className="absolute bg-brand-red right-20 lg:right-40  xl:right-96  top-10  rounded-md p-2 h-14 cursor-pointer"
-          src="./search.svg"
+          src="/search.svg"
           alt="search"
         />
       </div>
-      <OrderDetails />
-      <OrderTable />
+      {orderData && (
+        <>
+          <OrderDetails orderData={orderData} />
+          <OrderTable orderData={orderData} />{' '}
+        </>
+      )}
     </div>
   );
 };
