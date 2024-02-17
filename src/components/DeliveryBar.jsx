@@ -22,12 +22,15 @@ const DeliveryBar = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-between py-5 md:mt-5">
+      <div
+        className="flex flex-col justify-between
+       py-5 md:mt-5 lg:justify-between lg:w-[100%] lg:ml-10 lg:flex-row relative"
+      >
         {steps?.map((step, i) => (
           <div key={i} className="flex gap-0 ">
             <div
               className={`step-item
-              ${i > 0 && i < steps.length ? 'before' : ''}  
+              ${i > 0 && i < steps.length ? 'before lg:before-2' : ''}  
               ${currentStep === i + 1 && 'active'} 
               ${i === steps.length - 1 && 'last'} 
               ${
@@ -43,7 +46,7 @@ const DeliveryBar = () => {
                 )}
               </div>
             </div>
-            <p className="text-gray-500 whitespace-nowrap md:absolute md:left-[55%]">
+            <p className="text-gray-500 whitespace-nowrap md:absolute md:left-[55%] lg:relative lg:w-[120px] lg:whitespace-normal lg:text-center lg:-left-[55%] lg:-top-3 ">
               {step}
             </p>
           </div>

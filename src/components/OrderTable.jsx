@@ -10,12 +10,12 @@ import {
 } from '@chakra-ui/react';
 const OrderTable = () => {
   return (
-    <div className="font-Lato mx-5  mb-10 ">
+    <div className="font-Lato  ">
       <ChakraProvider>
         <div className="flex flex-col md:flex-row gap-10">
-          <TableContainer className="font-Lato mb-10 ">
+          <TableContainer className="font-Lato mb-10 w-[80%] ">
             <h3 className="mb-5 font-semibold">Order Details</h3>
-            <Table variant="simple">
+            <Table variant="simple" size={{ base: 'sm', md: 'lg' }}>
               <Thead className="bg-slate-50">
                 <Tr>
                   <Th>Branch</Th>
@@ -46,7 +46,7 @@ const OrderTable = () => {
               </Tbody>
             </Table>
           </TableContainer>
-          <div className="">
+          <div className="lg:w-[50%] xl:w-[35%] 2xl:w-[25%] ">
             <h3 className="mb-5 font-semibold">Address of delivery</h3>
             <p className="bg-slate-50 max-w-[60ch] py-5 pl-5 pr-20">
               20 Street 66, New Cairo 1, Cairo Governorate 4723412
