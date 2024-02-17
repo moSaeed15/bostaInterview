@@ -2,18 +2,19 @@ import { useState, useEffect } from 'react';
 import OrderDetails from './OrderDetails';
 import OrderTable from './OrderTable';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const TrackSearch = ({ language }) => {
   const [orderData, setOrderData] = useState();
   const [trackingIDInput, setTrackingIDInput] = useState('');
   let { trackingID } = useParams();
 
+  const { t } = useTranslation();
   useEffect(() => {
     const getOrderData = async () => {
       const response = await fetch(
         `https://tracking.bosta.co/shipments/track/${trackingID}`
       );
-      console.log(response);
       const data = await response.json();
       if (response.ok) setOrderData(data);
     };
@@ -39,10 +40,10 @@ const TrackSearch = ({ language }) => {
             language === 'en' ? 'font-Poppins' : 'font-Cairo'
           }  text-dropdown-color text-2xl xl:text-4xl font-semibold mb-4`}
         >
-          Track Your Order
+          {t('trackSearch.trackYourOrder')}
         </h1>
         <p className={`${language === 'en' ? 'font-Lato' : 'font-Cairo'} `}>
-          All order updates will be available through this link.
+          {t('trackSearch.orderUpdates')}{' '}
         </p>
       </div>
       <form
@@ -57,7 +58,7 @@ const TrackSearch = ({ language }) => {
           className="relative top-10 border placeholder:text-sm placeholder:opacity-80 outline-none
             rounded-md p-5 transition-all duration-300
             w-full focus:outline-[#1dabb3] h-14"
-          placeholder="Tracking No."
+          placeholder={t('nav.trackingNo')}
           onChange={e => {
             setTrackingIDInput(e.target.value);
           }}
@@ -67,7 +68,7 @@ const TrackSearch = ({ language }) => {
             navigate(`/tracking/${trackingIDInput}`);
             window.location.reload();
           }}
-          className="absolute bg-brand-red right-20 lg:right-40  xl:right-96  top-10  rounded-md p-2 h-14 cursor-pointer"
+          className="absolute bg-brand-red ltr:right-20 ltr:lg:right-40  ltr:xl:right-96   rtl:left-20 rtl:lg:left-40  rtl:xl:left-96 top-10  rounded-md p-2 h-14 cursor-pointer"
           src="/search.svg"
           alt="search"
         />
@@ -79,12 +80,12 @@ const TrackSearch = ({ language }) => {
         </>
       ) : (
         <div className="mt-20 text-center flex flex-col items-center gap-5">
-          <h2 className="font-bold opacity-50">ORDER #{trackingID}</h2>
+          <h2 className="font-bold opacity-50">
+            {t('trackSearch.orderID', { trackingID })}
+          </h2>
           <p className="border border-[#fecdca] rounded-md bg-[#fef3f2] p-3 font-normal flex gap-1 text-sm  text-center max-w-[80ch]">
-            <img src="/error.svg" alt="error" className="self-start" /> No
-            record of this tracking number can be found at this time, please
-            check the number and try again later. For further assistance, please
-            contact Customer Service.
+            <img src="/error.svg" alt="error" className="self-start" />{' '}
+            {t('trackSearch.noRecord')}
           </p>
         </div>
       )}

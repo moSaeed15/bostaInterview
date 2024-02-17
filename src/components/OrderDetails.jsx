@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import DeliveryBar from './DeliveryBar';
 import DetailsText from './DetailsText';
 import { dateFormat } from '../utils/DateUtils';
 
 const OrderDetails = ({ orderData, language }) => {
+  const { t } = useTranslation();
+
   const getColor = (status, isText = false, isBefore = false) => {
     if (isText) {
       if (status === 'DELIVERED') return 'text-green';
@@ -26,10 +29,10 @@ const OrderDetails = ({ orderData, language }) => {
         language === 'en' ? 'font-Lato' : 'font-Cairo'
       }`}
     >
-      <div className="flex flex-col md:grid md:grid-cols-2 gap-y-5 border-b py-5 border-track-border md:gap-x-20 xl:grid-cols-4 md:px-20">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-y-5 border-b py-5 border-track-border md:gap-x-20 xl:grid-cols-4 md:px-20 ">
         <div className="flex flex-col gap-1">
           <span className="opacity-70">
-            Order Number {orderData.TrackingNumber}
+            {t('orderDetails.orderNumber')} {orderData.TrackingNumber}
           </span>
           <span
             className={`${getColor(
@@ -38,20 +41,23 @@ const OrderDetails = ({ orderData, language }) => {
             )} font-semibold`}
           >
             {orderData.CurrentStatus.state === 'DELIVERED_TO_SENDER' &&
-              'Order is returned back to the shipper'}
+              t('orderDetails.returnedToShipper')}
             {orderData.CurrentStatus.state === 'DELIVERED' &&
-              'Order has been delivered'}
+              t('orderDetails.delivered')}
             {orderData.CurrentStatus.state === 'CANCELLED' &&
-              'Order has been cancelled'}
+              t('orderDetails.cancelled')}
           </span>
         </div>
         <DetailsText
-          title={'Last Updated'}
+          title={t('orderDetails.lastUpdated')}
           text={dateFormat(orderData.CurrentStatus.timestamp)}
         />
-        <DetailsText title={'Merchant name'} text={orderData.provider} />
         <DetailsText
-          title={'Delivery Date'}
+          title={t('orderDetails.merchantName')}
+          text={orderData.provider}
+        />
+        <DetailsText
+          title={t('orderDetails.deliveryDate')}
           text={dateFormat(orderData.PromisedDate)}
         />
       </div>

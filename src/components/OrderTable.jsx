@@ -10,19 +10,22 @@ import {
   TableContainer,
   ChakraProvider,
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
+
 import { useEffect, useState } from 'react';
 import { formatDate, formatTime } from '../utils/DateUtils';
 const OrderTable = ({ orderData, language }) => {
   const [tableData, setTableData] = useState([]);
+  const { t } = useTranslation();
 
   const stateTranslations = {
-    TICKET_CREATED: 'Order Created',
-    PACKAGE_RECEIVED: 'Order Received from Merchant',
-    OUT_FOR_DELIVERY: 'Order Out for Delivery',
-    DELIVERED: 'Order Delivered',
-    DELIVERED_TO_SENDER: 'Order Delivered to Sender',
-    CANCELLED: 'Order Cancelled',
-    WAITING_FOR_CUSTOMER_ACTION: 'Waiting for Customer action',
+    TICKET_CREATED: t('orderTable.orderCreated'),
+    PACKAGE_RECEIVED: t('orderTable.orderReceived'),
+    OUT_FOR_DELIVERY: t('orderTable.outForDelivery'),
+    DELIVERED: t('orderTable.orderDelivered'),
+    DELIVERED_TO_SENDER: t('orderTable.orderDeliveredToSender'),
+    CANCELLED: t('orderTable.orderCancelled'),
+    WAITING_FOR_CUSTOMER_ACTION: t('orderTable.waitingForCustomerAction'),
   };
 
   const determineTableData = () => {
@@ -37,14 +40,17 @@ const OrderTable = ({ orderData, language }) => {
 
     const uniqueArray = [];
     orderData.TransitEvents.reduce((unique, event) => {
-      if (!unique.includes(event.state) || unique.reason || unique.hub) {
-        unique.push(event.state);
+      if (!unique.some(item => item.state === event.state) || event.reason) {
+        unique.push(event);
         uniqueArray.push(event);
       }
       return unique;
     }, []);
+
+    console.log(uniqueArray);
+
     const wantedStates = uniqueArray.filter(event => {
-      return completedStates.includes(event.state) || event.reason || event.hub;
+      return completedStates.includes(event.state) || event.reason;
     });
     console.log(wantedStates);
     return wantedStates;
@@ -64,10 +70,10 @@ const OrderTable = ({ orderData, language }) => {
               <Table variant="simple" size={{ base: 'sm', md: 'lg' }}>
                 <Thead className="bg-slate-50">
                   <Tr>
-                    <Th>Details</Th>
-                    <Th>Date</Th>
-                    <Th>Time</Th>
-                    <Th>Reason</Th>
+                    <Th>{t('orderTable.details')}</Th>
+                    <Th>{t('orderTable.date')}</Th>
+                    <Th>{t('orderTable.time')}</Th>
+                    <Th>{t('orderTable.reason')}</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -76,8 +82,13 @@ const OrderTable = ({ orderData, language }) => {
                       <Tr key={i}>
                         <Td>{stateTranslations[item.state]}</Td>
                         <Td>{formatDate(item.timestamp)}</Td>
-                        <Td>{formatTime(item.timestamp)}</Td>
-                        <Td>{item.reason}</Td>
+                        <Td dir="ltr">{formatTime(item.timestamp)}</Td>
+                        <Td>
+                          {item.reason &&
+                            t(`orderTable.reasonText`, {
+                              returnObjects: true,
+                            })[item.reason]}
+                        </Td>
                       </Tr>
                     );
                   })}
@@ -85,18 +96,21 @@ const OrderTable = ({ orderData, language }) => {
               </Table>
             </TableContainer>
             <div className="lg:w-[50%] xl:w-[35%] 2xl:w-[25%] ">
-              <h3 className="mb-5 font-semibold">Address of delivery</h3>
-              <p className="bg-slate-50 max-w-[60ch] py-5 pl-5 pr-20">
-                20 Street 66, New Cairo 1, Cairo Governorate 4723412
+              <h3 className="mb-5 font-semibold">
+                {t('orderTable.deliveryAddress')}
+              </h3>
+              <p className="bg-slate-50 max-w-[60ch] py-5 ltr:pl-5 ltr:pr-20 rtl:pr-5 rtl:pl-20">
+                {t('orderTable.address')}
               </p>
               <div className="flex  items-center  py-5 border mt-3 rounded-lg border-slate-100">
                 <img src="/question.png" alt="question" className="w-24 h-24" />
                 <div className="flex flex-col">
                   <p className="font-bold  mx-2">
-                    Do you have any problems with your order?!
+                    {t('orderTable.anyProblems')}
                   </p>
+
                   <button className=" mx-8 mt-4 p-2 px-10 bg-brand-red rounded-2xl text-white">
-                    Report the problem
+                    {t('orderTable.reportProblem')}
                   </button>
                 </div>
               </div>

@@ -99,18 +99,20 @@
 
 .step-item {
   @apply relative flex flex-col justify-center 
-  items-center w-20 md:mx-auto -left-3 
-lg:flex-row lg:mt-10;
+  items-center w-20 md:mx-auto ltr:-left-3 
+lg:flex-row lg:mt-10 rtl:-right-3;
 }
 
 .before:before {
   @apply content-[''] absolute 
-  w-[3px] h-[12vh] right-2/4 top-5 -translate-y-[100%]
+  w-[3px] h-[12vh] ltr:right-2/4 rtl:left-2/4  top-5 -translate-y-[100%]
   lg:w-[24vw] xl:w-[20vw] 2xl:w-[22vw]  lg:h-[3px];
 }
 
 .step {
-  @apply flex items-center justify-center relative  z-10 border  border-slate-200 rounded-full font-semibold text-white;
+  @apply flex items-center justify-center relative 
+   z-10 border  border-slate-200 
+   rounded-full font-semibold text-white;
 }
 
 .step-item {

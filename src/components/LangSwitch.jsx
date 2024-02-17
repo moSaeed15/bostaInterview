@@ -35,7 +35,9 @@ const LangSwitch = ({ trackPage, setLanguage, language }) => {
       />
       <ul
         className={` ${isClicked ? 'block' : 'hidden'}
-        rtl:left-4 absolute shadow-dropdown z-20 bg-white  top-[73px] p-2  font-medium text-sm rounded-md mt-2`}
+       ${
+         trackPage && 'lg:rtl:left-[unset] rtl:left-4 '
+       }  absolute shadow-dropdown z-20 bg-white  top-[73px] p-2  font-medium text-sm rounded-md mt-2`}
       >
         <li
           className="dropdown-text"
@@ -49,7 +51,7 @@ const LangSwitch = ({ trackPage, setLanguage, language }) => {
         <li
           className="dropdown-text"
           onClick={() => {
-            localStorage.setItem('lang', 'ar');
+            localStorage.setItem('lang', 'en');
 
             setLanguage('ar');
           }}

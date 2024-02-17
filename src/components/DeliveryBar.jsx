@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import { useEffect, useState } from 'react';
 import { TiTick } from 'react-icons/ti';
@@ -6,11 +7,13 @@ import { TbTruckDelivery } from 'react-icons/tb';
 import { LuPackageCheck } from 'react-icons/lu';
 
 const DeliveryBar = ({ orderData, getColor }) => {
+  const { t } = useTranslation();
+
   const steps = [
-    'Order Created',
-    'Order Recived from merchant',
-    'Order out for delivery',
-    'Order Delivered',
+    t('deliveryBar.orderCreated'),
+    t('deliveryBar.orderReceived'),
+    t('deliveryBar.outForDelivery'),
+    t('deliveryBar.orderDelivered'),
   ];
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -113,7 +116,7 @@ const DeliveryBar = ({ orderData, getColor }) => {
     <>
       <div
         className="flex flex-col justify-between
-       py-5 md:mt-5 lg:justify-between lg:w-[100%] lg:ml-10 lg:flex-row relative"
+       py-5 md:mt-5 lg:justify-between lg:w-[100%] ltr:lg:ml-10 rtl:lg:mr-10  lg:flex-row relative"
       >
         {steps?.map((step, i) => (
           <div key={i} className="flex gap-0 ">
@@ -124,7 +127,12 @@ const DeliveryBar = ({ orderData, getColor }) => {
                 {i + 1 < currentStep ? <TiTick size={24} /> : getIcon(i + 1)}
               </div>
             </div>
-            <p className="text-gray-500 whitespace-nowrap md:absolute md:left-[55%] lg:relative lg:w-[120px] lg:whitespace-normal lg:text-center lg:-left-[55%] lg:-top-3 ">
+            <p
+              className="text-gray-500 whitespace-nowrap md:absolute 
+            ltr:md:left-[55%]  rtl:md:right-[55%] lg:relative 
+            lg:w-[120px] lg:whitespace-normal 
+            lg:text-center ltr:lg:-left-[55%] rtl:lg:-right-[55%] lg:-top-3 "
+            >
               {step}
             </p>
           </div>

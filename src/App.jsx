@@ -11,8 +11,6 @@ function App() {
     localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en'
   );
 
-  console.log(language);
-
   useEffect(() => {
     const handleChangeLang = language => {
       i18n.changeLanguage(language);
