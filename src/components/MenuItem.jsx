@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Dropdown from './Dropdown';
 
-const MenuItem = ({ title, hasArrow, isUnderlined, items, mobile }) => {
+const MenuItem = ({
+  title,
+  hasArrow,
+  isUnderlined,
+  items,
+  mobile,
+  setLanguage,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -18,6 +25,16 @@ const MenuItem = ({ title, hasArrow, isUnderlined, items, mobile }) => {
     <li
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={() => {
+        if (title === 'العربية') {
+          localStorage.setItem('lang', 'ar');
+          setLanguage('ar');
+        } else if (title === 'English') {
+          localStorage.setItem('lang', 'en');
+
+          setLanguage('en');
+        }
+      }}
       className={`relative cursor-pointer flex gap-2 items-center justify-between py-6 border-dashed border-grey-border  
       ${title === 'العربية' ? 'font-Cairo' : 'font-Lato'}
       ${(title !== 'العربية' || title !== 'English') && 'hover:text-brand-red'}
@@ -30,7 +47,9 @@ const MenuItem = ({ title, hasArrow, isUnderlined, items, mobile }) => {
         <img
           src={isHovered ? '/arrow-down-r.svg' : '/arrow-down.svg'}
           alt="arrow-down"
-          className={`w-[10px] h-[6px] ${isHovered && 'rotate-270'}`}
+          className={`w-[10px] h-[6px] ${
+            isHovered && 'rtl:-rotate-270 ltr:rotate-270 '
+          }`}
         />
       )}
       {items && isHovered && <Dropdown items={items} mobile={true} />}

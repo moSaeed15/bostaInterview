@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import MenuItem from './MenuItem';
 
-const HamburgerMenu = () => {
+import { useTranslation } from 'react-i18next';
+
+const HamburgerMenu = ({ setLanguage }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const { t } = useTranslation();
+
   return (
     <div className="visible xl:invisible  ">
       {/* Menu lines */}
@@ -22,27 +26,27 @@ const HamburgerMenu = () => {
       >
         <ul>
           <MenuItem
-            title="Products"
+            title={t('nav.li1')}
             hasArrow={true}
-            items={['Solutions', 'Dashboard', 'Mobile App']}
+            items={t('nav.items1', { returnObjects: true })}
           />
           <MenuItem
-            title="Integrations"
+            title={t('nav.li2')}
             hasArrow={true}
-            items={['Shopify', 'WooCommerce', 'Custom APIs']}
+            items={t('nav.items2', { returnObjects: true })}
           />
           <MenuItem
-            title="Use Cases"
+            title={t('nav.li3')}
             hasArrow={true}
-            items={['Businesses', 'SMEs']}
+            items={t('nav.items3', { returnObjects: true })}
           />
-          <MenuItem title="Pricing" isUnderlined={true} />
-          <MenuItem title="Blog" isUnderlined={true} />
-          <MenuItem title="العربية" />
+          <MenuItem title={t('nav.li4')} isUnderlined={true} />
+          <MenuItem title={t('nav.li5')} isUnderlined={true} />
+          <MenuItem title={t('nav.li6')} setLanguage={setLanguage} />
         </ul>
         <div className=" mb-56">
-          <button className="menu-button block">Sign In</button>
-          <button className="menu-button-red block">Sign Up</button>
+          <button className="menu-button block"> {t('nav.signIn')}</button>
+          <button className="menu-button-red block"> {t('nav.signUp')}</button>
         </div>
       </div>
     </div>

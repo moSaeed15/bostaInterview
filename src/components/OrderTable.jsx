@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { formatDate, formatTime } from '../utils/DateUtils';
-const OrderTable = ({ orderData }) => {
+const OrderTable = ({ orderData, language }) => {
   const [tableData, setTableData] = useState([]);
 
   const stateTranslations = {
@@ -55,11 +55,11 @@ const OrderTable = ({ orderData }) => {
   }, []);
 
   return (
-    <div className="font-Lato  ">
+    <div className={` mb-10 ${language === 'en' ? 'font-Lato' : 'font-Cairo'}`}>
       <ChakraProvider>
         {tableData && (
           <div className="flex flex-col md:flex-row gap-10">
-            <TableContainer className="font-Lato mb-10 w-[80%] ">
+            <TableContainer className=" mb-10 w-[80%] ">
               <h3 className="mb-5 font-semibold">Order Details</h3>
               <Table variant="simple" size={{ base: 'sm', md: 'lg' }}>
                 <Thead className="bg-slate-50">

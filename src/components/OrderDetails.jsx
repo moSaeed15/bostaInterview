@@ -4,7 +4,7 @@ import DeliveryBar from './DeliveryBar';
 import DetailsText from './DetailsText';
 import { dateFormat } from '../utils/DateUtils';
 
-const OrderDetails = ({ orderData }) => {
+const OrderDetails = ({ orderData, language }) => {
   const getColor = (status, isText = false, isBefore = false) => {
     if (isText) {
       if (status === 'DELIVERED') return 'text-green';
@@ -21,7 +21,11 @@ const OrderDetails = ({ orderData }) => {
     }
   };
   return (
-    <div className=" mb-10 mt-20 py-5 border border-track-border font-Lato">
+    <div
+      className={` mb-10 mt-20 py-5 border border-track-border ${
+        language === 'en' ? 'font-Lato' : 'font-Cairo'
+      }`}
+    >
       <div className="flex flex-col md:grid md:grid-cols-2 gap-y-5 border-b py-5 border-track-border md:gap-x-20 xl:grid-cols-4 md:px-20">
         <div className="flex flex-col gap-1">
           <span className="opacity-70">

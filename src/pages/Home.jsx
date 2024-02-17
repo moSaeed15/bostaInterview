@@ -2,12 +2,12 @@ import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
-const Home = () => {
+const Home = ({ setLanguage, language }) => {
   return (
     <div>
-      <Navbar />
-      <Hero />
-      <Footer />
+      <Navbar setLanguage={setLanguage} language={language} />
+      <Hero language={language} />
+      <Footer language={language} />
     </div>
   );
 };

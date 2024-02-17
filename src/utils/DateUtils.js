@@ -45,7 +45,6 @@ export function formatTime(timeString) {
   const date = new Date(timeString);
 
   // Extract hour and minute components
-  const hour = String(date.getHours()).padStart(2, '0');
   const minute = String(date.getMinutes()).padStart(2, '0');
 
   // Determine AM or PM

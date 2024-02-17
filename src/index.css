@@ -40,7 +40,7 @@
    text-brand-red hover:bg-brand-red hover:text-white hover:underline transition-colors duration-300;
 }
 .hexagon {
-  @apply relative rounded-3xl;
+  @apply relative rounded-3xl left-[40%] rtl:right-[40%];
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
   width: 30em;
   height: 30em;
@@ -48,19 +48,19 @@
   margin-bottom: 20px;
 }
 .hexagon::before {
+  @apply bg-[100%] rtl:bg-[-30%];
   content: '';
   position: absolute;
   background-image: url('https://bosta.co/841cb0d0f210d54dd999cb2ed74eb5a9.png');
   width: 40em;
   height: 34em;
   background-size: cover;
-  background-position: 110%;
 }
 @media (min-width: 829px) {
   .hexagon {
+    @apply left-[50%] rtl:right-[50%];
     width: 30em;
     height: 30em;
-    left: 50%;
   }
   .hexagon::before {
     width: 40em;
@@ -69,6 +69,8 @@
 }
 @media (min-width: 1000px) {
   .hexagon {
+    @apply left-[60%] rtl:right-[60%];
+
     width: 40em;
     height: 40em;
     left: 60%;
@@ -79,25 +81,13 @@
     background-position: 70%;
   }
 }
-@media (min-width: 1000px) {
-  .hexagon {
-    width: 40em;
-    height: 40em;
-    left: 60%;
-  }
-  .hexagon::before {
-    width: 40em;
-    height: 40em;
-    background-position: 70%;
-  }
-}
+
 @media (min-width: 1280px) {
   .hexagon {
+    @apply left-[unset] right-[-50px] rtl:right-[unset] rtl:-left-[150px];
     position: absolute;
     width: 40em;
     height: 40em;
-    left: unset;
-    right: -50px;
     bottom: 0px;
   }
   .hexagon::before {
