@@ -16,6 +16,9 @@ export default {
         'dropdown-hover': '#F5F5F5',
         'grey-border': '#667085',
         'footer-color': '#e8f8fa',
+        'light-blue': '#f3fafb',
+        yellow: '#f9ba02',
+        'track-border': '#eeeeee',
       },
       boxShadow: {
         dropdown:

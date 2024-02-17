@@ -1,8 +1,7 @@
-import Hero from './components/Hero';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Tracking from './pages/Tracking';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   const [language, setLanguage] = useState(
@@ -12,14 +11,9 @@ function App() {
   return (
     <div dir="ltr">
       <Routes>
-        <Route
-          element={<Navbar language={language} setLanguage={setLanguage} />}
-        >
-          <Route path="/" element={<Hero />} />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/tracking:trackingID" element={<Tracking />} />
       </Routes>
-
-      <Footer />
     </div>
   );
 }

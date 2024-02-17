@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className="">
       <nav className="">
-        <div className=" bg-white z-50 flex items-center p-5 justify-between w-full fixed  font-Lato h-28">
+        <div className=" bg-white z-50 flex items-center p-5 lg:px-14 justify-between w-full fixed  font-Lato h-28">
           <img src="bosta-en-logo.svg" alt="bosta logo" />
           <ul className="hidden xl:flex gap-10">
             <MenuItem

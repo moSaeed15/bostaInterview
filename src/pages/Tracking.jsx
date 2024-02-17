@@ -1,5 +1,13 @@
+import { TrackNavbar } from '../components/TrackNavbar';
+import TrackSearch from '../components/TrackSearch';
+
 const Tracking = () => {
-  return <div>Tracking</div>;
+  return (
+    <div>
+      <TrackNavbar trackPage={true} />
+      <TrackSearch />
+    </div>
+  );
 };
 
 export default Tracking;

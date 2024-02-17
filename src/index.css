@@ -6,6 +6,10 @@
 .menu {
   @apply ml-6 justify-around cursor-pointer flex flex-col w-[22px] h-[22px];
 }
+.dropdown-text {
+  @apply py-1 px-3 text-dropdown-color transition-all duration-300 
+  hover:text-dropdown-color  hover:bg-dropdown-hover cursor-pointer;
+}
 .menu > div {
   @apply bg-menu-color w-[22px] h-[3px];
   transition: transform 0.4s linear, opacity 0.4s linear;
@@ -101,4 +105,33 @@
     height: 40em;
     background-position: 45%;
   }
+}
+
+.step-item {
+  @apply relative flex flex-col justify-center items-center w-20 md:mx-auto -left-3;
+}
+
+.before:before {
+  @apply content-[''] bg-slate-200 absolute w-[3px] h-[10vh] right-2/4 top-0 -translate-y-[100%];
+}
+
+.step {
+  @apply w-10 h-10 flex items-center justify-center z-10 relative border  border-slate-200 rounded-full font-semibold text-white;
+}
+
+.complete .step {
+  @apply bg-yellow w-5 h-5;
+}
+.active .step {
+  @apply bg-yellow w-10 h-10;
+}
+.complete p {
+  @apply text-white;
+}
+.step-item {
+  @apply mb-[10vh];
+}
+
+.last {
+  @apply mb-0;
 }
