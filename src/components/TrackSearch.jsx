@@ -19,17 +19,18 @@ const TrackSearch = ({ language }) => {
   }, []);
 
   let { trackingID } = useParams();
-  const getOrderData = async ID => {
+  const getOrderData = async () => {
     const response = await fetch(
-      `https://tracking.bosta.co/shipments/track/${ID}`
+      `https://tracking.bosta.co/shipments/track/${trackingID}`
     );
     const data = await response.json();
     if (response.ok) setOrderData(data);
+    else setOrderData(null);
   };
   const { t } = useTranslation();
   useEffect(() => {
     try {
-      getOrderData(trackingID);
+      getOrderData();
     } catch (err) {
       console.error(err);
     }
@@ -60,7 +61,7 @@ const TrackSearch = ({ language }) => {
         onSubmit={() => {
           if (trackingIDInput !== '') {
             navigate(`/tracking/${trackingIDInput}`);
-            getOrderData(trackingIDInput);
+            window.location.reload();
           }
         }}
         className="relative bg-light-blue px-20 lg:px-40 xl:px-96 mt-5"
@@ -79,7 +80,7 @@ const TrackSearch = ({ language }) => {
           onClick={() => {
             if (trackingIDInput !== '') {
               navigate(`/tracking/${trackingIDInput}`);
-              getOrderData(trackingIDInput);
+              window.location.reload();
             }
           }}
           className="absolute bg-brand-red ltr:right-20 ltr:lg:right-40  ltr:xl:right-96   rtl:left-20 rtl:lg:left-40  rtl:xl:left-96 top-10  rounded-md p-2 h-14 cursor-pointer"

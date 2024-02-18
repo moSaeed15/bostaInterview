@@ -47,12 +47,9 @@ const OrderTable = ({ orderData, language }) => {
       return unique;
     }, []);
 
-    console.log(uniqueArray);
-
     const wantedStates = uniqueArray.filter(event => {
       return completedStates.includes(event.state) || event.reason;
     });
-    console.log(wantedStates);
     return wantedStates;
   };
 
