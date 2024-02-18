@@ -17,6 +17,7 @@ To run the project locally, follow these steps:
 2. `npm install` in your terminal.
 3. Start the development server using `npm run dev`.
 4. Access the application in your web browser at `http://localhost:5173`.
+5. Access the tracking page through the track shipment dropdown or `http://localhost:5173/tracking/67151313` .
 
 ## Technologies Used
 
