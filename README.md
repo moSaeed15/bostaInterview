@@ -1,8 +1,28 @@
-# React + Vite
+# Bosta Shipment Tracking Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This web application was created for the interview process using React.js and Tailwind CSS for styling.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Integration with the Bosta backend API for shipment tracking.
+- Fully responsive design on different Screeen sizes.
+- Support for multiple languages: English and Arabic.
+- User interface closely resembling the provided design images.
+
+## Usage
+
+To run the project locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. `npm install` in your terminal.
+3. Start the development server using `npm run dev`.
+4. Access the application in your web browser at `http://localhost:5173`.
+
+## Technologies Used
+
+- React.js
+- Tailwind CSS
+
+## Font
+
+The font used in this project is Cairo for the arabic language and Lato and Poppins for the english language.
