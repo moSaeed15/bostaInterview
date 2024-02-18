@@ -19,19 +19,17 @@ const TrackSearch = ({ language }) => {
   }, []);
 
   let { trackingID } = useParams();
-
+  const getOrderData = async ID => {
+    const response = await fetch(
+      `https://tracking.bosta.co/shipments/track/${ID}`
+    );
+    const data = await response.json();
+    if (response.ok) setOrderData(data);
+  };
   const { t } = useTranslation();
   useEffect(() => {
-    const getOrderData = async () => {
-      const response = await fetch(
-        `https://tracking.bosta.co/shipments/track/${trackingID}`
-      );
-      const data = await response.json();
-      if (response.ok) setOrderData(data);
-      else setOrderData(null);
-    };
     try {
-      getOrderData();
+      getOrderData(trackingID);
     } catch (err) {
       console.error(err);
     }
@@ -62,7 +60,7 @@ const TrackSearch = ({ language }) => {
         onSubmit={() => {
           if (trackingIDInput !== '') {
             navigate(`/tracking/${trackingIDInput}`);
-            window.location.reload();
+            getOrderData(trackingIDInput);
           }
         }}
         className="relative bg-light-blue px-20 lg:px-40 xl:px-96 mt-5"
@@ -81,7 +79,7 @@ const TrackSearch = ({ language }) => {
           onClick={() => {
             if (trackingIDInput !== '') {
               navigate(`/tracking/${trackingIDInput}`);
-              window.location.reload();
+              getOrderData(trackingIDInput);
             }
           }}
           className="absolute bg-brand-red ltr:right-20 ltr:lg:right-40  ltr:xl:right-96   rtl:left-20 rtl:lg:left-40  rtl:xl:left-96 top-10  rounded-md p-2 h-14 cursor-pointer"
