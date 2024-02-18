@@ -57,7 +57,7 @@ const TrackShipment = () => {
         <div className="relative">
           <form
             onSubmit={() => {
-              navigate(`/tracking/${trackingID}`);
+              if (trackingID !== '') navigate(`/tracking/${trackingID}`);
             }}
           >
             <input
@@ -70,7 +70,7 @@ const TrackShipment = () => {
             />
             <img
               onClick={() => {
-                navigate(`/tracking/${trackingID}`);
+                if (trackingID !== '') navigate(`/tracking/${trackingID}`);
               }}
               className="absolute bg-brand-red ltr:right-0 rtl:left-0 bottom-0 rounded-md p-2 h-10 lg:h-12 cursor-pointer"
               src="./search.svg"

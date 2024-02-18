@@ -34,6 +34,10 @@ export default {
         'hero-pattern':
           'linear-gradient(180deg,rgba(29,189,205,0),rgba(29,189,205,.1))',
       },
+      screens: {
+        '1.5xl': '1430px',
+        '3xl': '1700px',
+      },
     },
   },
   plugins: [],

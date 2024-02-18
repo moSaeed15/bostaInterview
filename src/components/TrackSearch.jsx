@@ -7,6 +7,17 @@ import { useTranslation } from 'react-i18next';
 const TrackSearch = ({ language }) => {
   const [orderData, setOrderData] = useState();
   const [trackingIDInput, setTrackingIDInput] = useState('');
+
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowMessage(true);
+    }, 320);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   let { trackingID } = useParams();
 
   const { t } = useTranslation();
@@ -17,6 +28,7 @@ const TrackSearch = ({ language }) => {
       );
       const data = await response.json();
       if (response.ok) setOrderData(data);
+      else setOrderData(null);
     };
     try {
       getOrderData();
@@ -48,8 +60,10 @@ const TrackSearch = ({ language }) => {
       </div>
       <form
         onSubmit={() => {
-          navigate(`/tracking/${trackingIDInput}`);
-          window.location.reload();
+          if (trackingIDInput !== '') {
+            navigate(`/tracking/${trackingIDInput}`);
+            window.location.reload();
+          }
         }}
         className="relative bg-light-blue px-20 lg:px-40 xl:px-96 mt-5"
       >
@@ -65,8 +79,10 @@ const TrackSearch = ({ language }) => {
         />
         <img
           onClick={() => {
-            navigate(`/tracking/${trackingIDInput}`);
-            window.location.reload();
+            if (trackingIDInput !== '') {
+              navigate(`/tracking/${trackingIDInput}`);
+              window.location.reload();
+            }
           }}
           className="absolute bg-brand-red ltr:right-20 ltr:lg:right-40  ltr:xl:right-96   rtl:left-20 rtl:lg:left-40  rtl:xl:left-96 top-10  rounded-md p-2 h-14 cursor-pointer"
           src="/search.svg"
@@ -79,15 +95,17 @@ const TrackSearch = ({ language }) => {
           <OrderTable orderData={orderData} language={language} />
         </>
       ) : (
-        <div className="mt-20 text-center flex flex-col items-center gap-5">
-          <h2 className="font-bold opacity-50">
-            {t('trackSearch.orderID', { trackingID })}
-          </h2>
-          <p className="border border-[#fecdca] rounded-md bg-[#fef3f2] p-3 font-normal flex gap-1 text-sm  text-center max-w-[80ch]">
-            <img src="/error.svg" alt="error" className="self-start" />{' '}
-            {t('trackSearch.noRecord')}
-          </p>
-        </div>
+        showMessage && (
+          <div className="mt-20 text-center flex flex-col items-center gap-5">
+            <h2 className="font-bold opacity-50">
+              {t('trackSearch.orderID', { trackingID })}
+            </h2>
+            <p className="border border-[#fecdca] rounded-md bg-[#fef3f2] p-3 font-normal flex gap-1 text-sm  text-center max-w-[80ch]">
+              <img src="/error.svg" alt="error" className="self-start" />{' '}
+              {t('trackSearch.noRecord')}
+            </p>
+          </div>
+        )
       )}
     </div>
   );

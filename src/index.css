@@ -39,6 +39,7 @@
   @apply mx-auto  w-full  my-6 border border-brand-red py-3 px-8 lg:px-4 rounded-[50px]
    text-brand-red hover:bg-brand-red hover:text-white hover:underline transition-colors duration-300;
 }
+
 .hexagon {
   @apply relative rounded-3xl left-[40%] rtl:right-[40%];
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
@@ -106,7 +107,7 @@ lg:flex-row lg:mt-10 rtl:-right-3;
 .before:before {
   @apply content-[''] absolute 
   w-[3px] h-[12vh] ltr:right-2/4 rtl:left-2/4  top-5 -translate-y-[100%]
-  lg:w-[24vw] xl:w-[20vw] 2xl:w-[22vw]  lg:h-[3px];
+  lg:w-[24vw] xl:w-[20vw] 1.5xl:w-[21vw] 2xl:w-[22vw] 3xl:w-[23.5vw]  lg:h-[3px];
 }
 
 .step {
