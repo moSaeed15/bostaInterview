@@ -46,7 +46,7 @@ const DeliveryBar = ({ orderData, getColor }) => {
   };
   useEffect(() => {
     setCurrentStep(determineCompletedSteps());
-  }, []);
+  }, [orderData]);
   const getIcon = index => {
     if (index === 1) {
       return (
